@@ -1,0 +1,2 @@
+# azure-facialEmotionEstimation
+AzureのfaceAPIを用いて、動画の表情解析を行ってみる
