@@ -1,21 +1,9 @@
 import plotly.express as px
-import pandas as pd
-import json
+import data_preprocessing as dp
 
 if __name__ == '__main__':
-    # jsonファイル読み込み
-    json_file = open('sample.json', 'r')
-    json_obj = json.load(json_file)
 
-    # indexとvalueを取得し、DataFrameへと整形
-    label = ['anger', 'contempt', 'disgust', 'fear', 'happiness', 'neutral', 'sadness', 'surprise']
-    value = []
-
-    for i in label:
-        value.append(json_obj[i])
-
-    df = pd.DataFrame(value, index=label, columns=['value'])
-    print(df)
+    df, label, value = dp.read_data()
 
     # グラフ出力
     fig = px.pie(data_frame=df, values=value, names=label, color=label, width=640, height=360,
