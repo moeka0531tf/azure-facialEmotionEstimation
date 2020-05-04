@@ -22,7 +22,7 @@ if __name__ == "__main__":
     # faceClientの作成
     face_client = FaceClient(FACE_ENDPOINT, CognitiveServicesCredentials(KEY))
 
-    # 顔の向きを取得する
+    # 表情を取得する
     image_url = 'https://raw.githubusercontent.com/Microsoft/Cognitive-Face-Windows/master/Data/detection1.jpg'
     image_name = os.path.basename(image_url) # os.path.name -> 拡張子を含むファイル名を取得
     detected_faces = face_client.face.detect_with_url(url=image_url, return_face_attributes=['emotion'])
