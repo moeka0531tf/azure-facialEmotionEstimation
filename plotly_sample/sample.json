@@ -1,0 +1,11 @@
+{
+  "additional_properties": {},
+  "anger": 0.05,
+  "contempt": 0.1,
+  "disgust": 0.1,
+  "fear": 0.1,
+  "happiness": 0.3,
+  "neutral": 0.1,
+  "sadness": 0.15,
+  "surprise": 0.1
+}
