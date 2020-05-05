@@ -6,8 +6,8 @@ from azure.cognitiveservices.vision.face import FaceClient
 from msrest.authentication import CognitiveServicesCredentials
 
 # 感情値の出力
-def getEmotion(faceDictionary):
-    print(faceDictionary.face_attributes.emotion)
+def print_emotion(face):
+    print(face.face_attributes.emotion)
 
 
 if __name__ == "__main__":
@@ -30,4 +30,4 @@ if __name__ == "__main__":
         raise Exception('No face detected from image {}'.format(image_name))
 
     for face in detected_faces:
-        getEmotion(face)
+        print_emotion(face)
