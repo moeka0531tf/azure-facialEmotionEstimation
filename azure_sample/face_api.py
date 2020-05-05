@@ -16,18 +16,18 @@ if __name__ == "__main__":
     dotenv_path = join(Path(os.getcwd()).parent, '.env')
     load_dotenv(dotenv_path)
 
-    KEY = os.environ.get("FACE_SUBSCRIPTION_KEY")
+    FACE_SUBSCRIPTION_KEY = os.environ.get("FACE_SUBSCRIPTION_KEY")
     FACE_ENDPOINT = os.environ.get("FACE_ENDPOINT")
 
     # faceClientの作成
-    face_client = FaceClient(FACE_ENDPOINT, CognitiveServicesCredentials(KEY))
+    face_client = FaceClient(FACE_ENDPOINT, CognitiveServicesCredentials(FACE_SUBSCRIPTION_KEY))
 
     # 表情を取得する
     image_url = 'https://raw.githubusercontent.com/Microsoft/Cognitive-Face-Windows/master/Data/detection1.jpg'
-    image_name = os.path.basename(image_url) # os.path.name -> 拡張子を含むファイル名を取得
+    image_file_name = os.path.basename(image_url) # os.path.name -> 拡張子を含むファイル名を取得
     detected_faces = face_client.face.detect_with_url(url=image_url, return_face_attributes=['emotion'])
     if not detected_faces:
-        raise Exception('No face detected from image {}'.format(image_name))
+        raise Exception('No face detected from image {}'.format(image_file_name))
 
     for face in detected_faces:
         print_emotion(face)
