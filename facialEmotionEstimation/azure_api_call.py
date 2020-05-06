@@ -20,7 +20,7 @@ def prepare():
     return FaceClient(FACE_ENDPOINT, CognitiveServicesCredentials(FACE_SUBSCRIPTION_KEY))
 
 
-def get_emotion(image_url, face_client):
+def estimate_emotion(image_url, face_client):
 
     # 表情を取得する
     image_url = image_url

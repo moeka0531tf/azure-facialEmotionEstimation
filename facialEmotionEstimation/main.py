@@ -9,6 +9,6 @@ if __name__ == "__main__":
     image_url = 'https://cdn.pixabay.com/photo/2015/09/02/13/24/girl-919048_960_720.jpg'
 
     face_client = azurecall.prepare()
-    emotion_dict = azurecall.get_emotion(image_url, face_client)
+    emotion_dict = azurecall.estimate_emotion(image_url, face_client)
 
     draw_graph.draw(emotion_dict)
