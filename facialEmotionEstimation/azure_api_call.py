@@ -22,8 +22,6 @@ def prepare():
 
 def estimate_emotion(image_url, face_client):
 
-    # 表情を取得する
-    image_url = image_url
     image_file_name = os.path.basename(image_url)
     detected_faces = face_client.face.detect_with_url(url=image_url, return_face_attributes=['emotion'])
     if not detected_faces:
