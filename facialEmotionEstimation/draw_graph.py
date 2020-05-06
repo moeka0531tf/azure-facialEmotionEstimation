@@ -15,8 +15,8 @@ def shape_data(emotion_dict):
              'surprise']
     value = []
 
-    for i in label:
-        value.append(emotion_dict[i])
+    for l in label:
+        value.append(emotion_dict[l])
 
     df = pd.DataFrame(value, index=label, columns=['value'])
     print(df)
