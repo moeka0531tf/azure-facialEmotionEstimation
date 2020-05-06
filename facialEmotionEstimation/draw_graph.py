@@ -5,14 +5,16 @@ import plotly.express as px
 def shape_data(emotion_dict):
 
     # label,valueを取得しDataFrameへと整形
-    label = ['anger',
-             'contempt',
-             'disgust',
-             'fear',
-             'happiness',
-             'neutral',
-             'sadness',
-             'surprise']
+    label = [
+        'anger',
+        'contempt',
+        'disgust',
+        'fear',
+        'happiness',
+        'neutral',
+        'sadness',
+        'surprise'
+    ]
     value = []
 
     for l in label:
