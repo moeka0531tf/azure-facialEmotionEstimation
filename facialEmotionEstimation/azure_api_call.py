@@ -1,11 +1,11 @@
+import ast
 import os
 from os.path import join
-from dotenv import load_dotenv
 from pathlib import Path
-from azure.cognitiveservices.vision.face import FaceClient
-from msrest.authentication import CognitiveServicesCredentials
-import ast
 
+from azure.cognitiveservices.vision.face import FaceClient
+from dotenv import load_dotenv
+from msrest.authentication import CognitiveServicesCredentials
 
 def prepare():
 
