@@ -131,3 +131,5 @@ dmypy.json
 # add etc
 .DS_Store
 .idea/
+data/
+
