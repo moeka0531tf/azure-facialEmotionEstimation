@@ -7,10 +7,11 @@ from pathlib import Path
 import cv2
 import send2trash
 
+# TODO: 他のファイルでも使う際には変数用のファイルを作成する
+IMAGE_PASS = './data/image'
 
 def video2image(video_file_path):
 
-    IMAGE_PASS = './data/image'
     os.makedirs(IMAGE_PASS, exist_ok=True)
 
     cap = cv2.VideoCapture(video_file_path)
@@ -43,7 +44,6 @@ def video2image(video_file_path):
 
 def delete_image_file():
 
-    IMAGE_PASS = './data/image'
     send2trash.send2trash(IMAGE_PASS)
 
 
