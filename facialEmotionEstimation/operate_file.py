@@ -8,18 +8,17 @@ import cv2
 import send2trash
 
 
-def video2image(video_pass):
+def video2image(video_file_path):
 
     IMAGE_PASS = './data/image'
+    os.makedirs(IMAGE_PASS, exist_ok=True)
 
-    cap = cv2.VideoCapture(video_pass)
-    file_name = os.path.basename(video_pass).split('.')[0]
+    cap = cv2.VideoCapture(video_file_path)
+    file_name = os.path.basename(video_file_path).split('.')[0]
 
     if not cap.isOpened():
-        print('動画ファイルが読み込めません')
+        print(os.path.abspath(video_file_path) + 'が読み込めません')
         return
-
-    os.makedirs(IMAGE_PASS, exist_ok=True)
 
     # 総フレーム数 / fps で動画の秒数を取得
     # ファイルの桁数を取得
