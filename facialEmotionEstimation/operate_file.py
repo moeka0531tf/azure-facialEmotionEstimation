@@ -28,14 +28,16 @@ def video2image(video_file_path):
     digit = len(str(seconds))
 
     # 1秒間隔で動画を切り出す
-    num = 0
+    frame_second = 0
     for i in range(num_frames):
         ret, frame = cap.read()
 
         if i % int(fps) == 0:
-            filled_second = str(num).zfill(digit)
-            cv2.imwrite( os.path.join(IMAGE_PASS, "{}_{}.{}".format(file_name, filled_second, 'png')), frame)
-            num += 1
+            filled_second = str(frame_second).zfill(digit)
+            create_file_name = "{}_{}.png".format(file_name, filled_second)
+            create_file_path = os.path.join(IMAGE_PASS, create_file_name)
+            cv2.imwrite(create_file_path, frame)
+            frame_second += 1
     print('動画から画像を切り出しました')
 
 
