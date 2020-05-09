@@ -9,10 +9,10 @@ import send2trash
 
 # TODO: 他のファイルでも使う際には変数用のファイルを作成する
 IMAGE_PATH = './data/image'
+os.makedirs(IMAGE_PATH, exist_ok=True)
 
 def video2image(video_file_path):
 
-    os.makedirs(IMAGE_PATH, exist_ok=True)
 
     cap = cv2.VideoCapture(video_file_path)
     file_name = os.path.basename(video_file_path).split('.')[0]
