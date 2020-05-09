@@ -54,7 +54,7 @@ if __name__ == "__main__":
     dotenv_path = join(Path(os.getcwd()).parent, '.env')
     load_dotenv(dotenv_path)
 
-    VIDEO_PASS = os.environ.get("VIDEO_PASS")
+    VIDEO_FILE_PATH = os.environ.get("VIDEO_FILE_PATH")
 
-    video2image(VIDEO_PASS)
+    video2image(VIDEO_FILE_PATH)
     # delete_image_file()
