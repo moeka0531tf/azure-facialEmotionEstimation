@@ -8,11 +8,11 @@ import cv2
 import send2trash
 
 # TODO: 他のファイルでも使う際には変数用のファイルを作成する
-IMAGE_PASS = './data/image'
+IMAGE_PATH = './data/image'
 
 def video2image(video_file_path):
 
-    os.makedirs(IMAGE_PASS, exist_ok=True)
+    os.makedirs(IMAGE_PATH, exist_ok=True)
 
     cap = cv2.VideoCapture(video_file_path)
     file_name = os.path.basename(video_file_path).split('.')[0]
@@ -36,7 +36,7 @@ def video2image(video_file_path):
         if i % int(fps) == 0:
             filled_second = str(frame_second).zfill(digit)
             create_file_name = "{}_{}.png".format(file_name, filled_second)
-            create_file_path = os.path.join(IMAGE_PASS, create_file_name)
+            create_file_path = os.path.join(IMAGE_PATH, create_file_name)
             cv2.imwrite(create_file_path, frame)
             frame_second += 1
     print('動画から画像を切り出しました')
@@ -44,7 +44,7 @@ def video2image(video_file_path):
 
 def delete_image_file():
 
-    send2trash.send2trash(IMAGE_PASS)
+    send2trash.send2trash(IMAGE_PATH)
 
 
 # MEMO: 試験的に実行するための仮置きmain
