@@ -25,7 +25,9 @@ def estimate_emotion(image_url, face_client):
     image_file_name = os.path.basename(image_url)
     detected_faces = face_client.face.detect_with_url(url=image_url, return_face_attributes=['emotion'])
     if not detected_faces:
-        raise Exception('No face detected from image {}'.format(image_file_name))
+        print('No face detected from image {}'.format(image_file_name))
+        return {'anger': 0, 'contempt': 0, 'disgust': 0, 'fear': 0, 'happiness': 0,
+                'neutral': 0, 'sadness': 0, 'surprise': 0}
 
     # MEMO1: azureのEmotionオブジェクト -> str -> dict型へ変換
     # MEMO2: image内には一人しか映っていない想定
