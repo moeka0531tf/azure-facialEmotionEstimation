@@ -40,6 +40,7 @@ def video2image(video_file_path):
             cv2.imwrite(create_file_path, frame)
             frame_second += 1
     print('動画から画像を切り出しました')
+    return frame_second;
 
 
 def delete_image_file():
@@ -57,5 +58,5 @@ if __name__ == "__main__":
 
     VIDEO_FILE_PATH = os.environ.get("VIDEO_FILE_PATH")
 
-    video2image(VIDEO_FILE_PATH)
+    num_frames = video2image(VIDEO_FILE_PATH)
     # delete_image_file()
