@@ -10,8 +10,13 @@ import send2trash
 
 import const
 
-# TODO: 他のファイルでも使う際には変数用のファイルを作成する
 os.makedirs(const.IMAGE_PATH, exist_ok=True)
+
+def make_file_name(file_name, second, digit):
+    filled_second = str(second).zfill(digit)
+    create_file_name = "{}_{}.png".format(file_name, filled_second)
+    create_file_path = os.path.join(const.IMAGE_PATH, create_file_name)
+    return create_file_path
 
 def video2image(video_file_path):
 
@@ -37,9 +42,7 @@ def video2image(video_file_path):
         ret, frame = cap.read()
 
         if i % int(fps) == 0:
-            filled_second = str(frame_second).zfill(digit)
-            create_file_name = "{}_{}.png".format(file_name, filled_second)
-            create_file_path = os.path.join(const.IMAGE_PATH, create_file_name)
+            create_file_path = make_file_name(file_name, frame_second, digit)
             cv2.imwrite(create_file_path, frame)
             frame_second += 1
     print('動画から画像を切り出しました')
