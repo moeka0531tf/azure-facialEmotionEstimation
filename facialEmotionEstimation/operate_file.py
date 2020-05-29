@@ -1,4 +1,5 @@
 # image, videoファイルの処理についての関数
+import glob
 import os
 from os.path import join
 
@@ -7,18 +8,25 @@ from pathlib import Path
 import cv2
 import send2trash
 
-# TODO: 他のファイルでも使う際には変数用のファイルを作成する
-IMAGE_PATH = './data/image'
-os.makedirs(IMAGE_PATH, exist_ok=True)
+import const
+
+os.makedirs(const.IMAGE_PATH, exist_ok=True)
+
+def make_file_name(file_name, second, digit):
+    filled_second = str(second).zfill(digit)
+    create_file_name = "{}_{}.png".format(file_name, filled_second)
+    create_file_path = os.path.join(const.IMAGE_PATH, create_file_name)
+    return create_file_path
 
 def video2image(video_file_path):
 
-
-    cap = cv2.VideoCapture(video_file_path)
-    file_name = os.path.basename(video_file_path).split('.')[0]
+    # MEMO: ディレクト内に複数mp4が存在する場合は一番最初に取得したものを使用する
+    video_file = glob.glob(video_file_path)[0]
+    cap = cv2.VideoCapture(video_file)
+    file_name = os.path.basename(video_file).split('.')[0]
 
     if not cap.isOpened():
-        print(os.path.abspath(video_file_path) + 'が読み込めません')
+        print(os.path.abspath(video_file) + 'が読み込めません')
         return
 
     # 総フレーム数 / fps で動画の秒数を取得
@@ -34,17 +42,16 @@ def video2image(video_file_path):
         ret, frame = cap.read()
 
         if i % int(fps) == 0:
-            filled_second = str(frame_second).zfill(digit)
-            create_file_name = "{}_{}.png".format(file_name, filled_second)
-            create_file_path = os.path.join(IMAGE_PATH, create_file_name)
+            create_file_path = make_file_name(file_name, frame_second, digit)
             cv2.imwrite(create_file_path, frame)
             frame_second += 1
     print('動画から画像を切り出しました')
+    return frame_second, file_name;
 
 
 def delete_image_file():
 
-    send2trash.send2trash(IMAGE_PATH)
+    send2trash.send2trash(const.IMAGE_PATH)
 
 
 # MEMO: 試験的に実行するための仮置きmain
@@ -57,5 +64,5 @@ if __name__ == "__main__":
 
     VIDEO_FILE_PATH = os.environ.get("VIDEO_FILE_PATH")
 
-    video2image(VIDEO_FILE_PATH)
+    num_frames = video2image(VIDEO_FILE_PATH)
     # delete_image_file()
